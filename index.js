@@ -12,11 +12,16 @@ var server = http.createServer(function(req, res){
     if(err){
       return err;
     }
-    console.log('deteminm')
     if(stats.isFile()){
-      res.writeHead(200, {'Content-Disposition': `attachment; filename= ${path.basename(pathname)}`});
-      fs.createReadStream(pathname)
-        .pipe(res)
+      if(path.extname(pathname) === '.mp3'){
+        res.writeHead(200, {'content-type': 'audio/mpeg'});
+        fs.createReadStream(pathname)
+          .pipe(res)
+      }else{
+        res.writeHead(200, {'Content-Disposition': `attachment; filename= ${path.basename(pathname)}`});
+        fs.createReadStream(pathname)
+          .pipe(res)
+      }
     }else if(stats.isDirectory()){
       fs.readdir(pathname, (err, files)=>{
         if(err){
@@ -26,8 +31,6 @@ var server = http.createServer(function(req, res){
         var hostname = args.hostname;
         var urls = [];
         for(var i in files){
-          console.log(req.url)
-          console.log(files[i])
           var link = path.join(req.url, files[i]) 
           link = `<a href='${link}'>${files[i]}</a>`
           urls.push(link)
@@ -45,5 +48,5 @@ var server = http.createServer(function(req, res){
 });
 
 server.listen(8080, ()=>{
-  console.log('server started at port 8080')
+  console.log('server started on localhost port 8080')
 });
