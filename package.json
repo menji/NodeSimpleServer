@@ -14,10 +14,11 @@
     "http",
     "server"
   ],
-  "author": "Harvey Chow",
+  "author": "Harvey Chou",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/menji/NodeSimpleServer/issues"
   },
-  "homepage": "https://github.com/menji/NodeSimpleServer#readme"
+  "homepage": "https://github.com/menji/NodeSimpleServer#readme",
+  "dependencies": {}
 }
