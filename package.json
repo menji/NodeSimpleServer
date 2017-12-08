@@ -20,5 +20,7 @@
     "url": "https://github.com/menji/NodeSimpleServer/issues"
   },
   "homepage": "https://github.com/menji/NodeSimpleServer#readme",
-  "dependencies": {}
+  "dependencies": {
+    "mime-types": "^2.1.17"
+  }
 }

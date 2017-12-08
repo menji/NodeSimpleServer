@@ -4,6 +4,7 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
+const mime = require('mime-types');
 
 var server = http.createServer(function(req, res){
   var args = url.parse(req.url); 
@@ -13,19 +14,10 @@ var server = http.createServer(function(req, res){
       return err;
     }
     if(stats.isFile()){
-      if(path.extname(pathname) === '.mp3'){
-        res.writeHead(200, {'content-type': 'audio/mpeg'});
-        fs.createReadStream(pathname)
-          .pipe(res)
-      }else if(path.extname(pathname) === '.mp4'){
-        res.writeHead(200, {'content-type': 'video/mp4'});
-        fs.createReadStream(pathname) 
-          .pipe(res)
-      }else{
-        res.writeHead(200, {'Content-Disposition': `attachment; filename= ${path.basename(pathname)}`});
-        fs.createReadStream(pathname)
-          .pipe(res)
-      }
+      var contentType = mime.contentType(path.basename(pathname));
+      res.writeHead(200, {'content-type': `${contentType}`});
+      fs.createReadStream(pathname)
+        .pipe(res)
     }else if(stats.isDirectory()){
       fs.readdir(pathname, (err, files)=>{
         if(err){
@@ -45,7 +37,7 @@ var server = http.createServer(function(req, res){
       })
     }else{
       res.writeHead(200, {'content-type': 'text/html'});
-      res.wrtite('unknow err')
+      res.wrtite('unknown err')
       res.end()
     }
   });
