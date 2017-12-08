@@ -17,6 +17,10 @@ var server = http.createServer(function(req, res){
         res.writeHead(200, {'content-type': 'audio/mpeg'});
         fs.createReadStream(pathname)
           .pipe(res)
+      }else if(path.extname(pathname) === '.mp4'){
+        res.writeHead(200, {'content-type': 'video/mp4'});
+        fs.createReadStream(pathname) 
+          .pipe(res)
       }else{
         res.writeHead(200, {'Content-Disposition': `attachment; filename= ${path.basename(pathname)}`});
         fs.createReadStream(pathname)
