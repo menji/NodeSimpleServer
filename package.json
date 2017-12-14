@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/menji/NodeSimpleServer#readme",
   "dependencies": {
-    "mime-types": "^2.1.17"
+    "mime-types": "^2.1.17",
+    "split": "^1.0.1",
+    "tar": "^4.1.1",
+    "through2": "^2.0.3"
   }
 }

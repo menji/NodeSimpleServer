@@ -1,0 +1,24 @@
+    <input id='filelist' name='filelist' type='text'/>
+    </form>
+    <script type='text/javascript'>
+      "use strict"
+      var fileList = []
+      $('form input').change(function(){
+        if(this.checked){
+          fileList.push($(this).siblings("a").text())
+          if(fileList.length === 1){
+            $('#download').css('display', 'block');
+          }
+        }else{
+          var filename = $(this).siblings("a").text();
+          fileList.splice(fileList.indexOf(filename), 1);
+          if(fileList.length === 0){
+            $('#download').css('display', 'none');
+          }
+        }
+        $('#filelist').val(fileList.join('|'));
+      });
+      $('#list').attr('action', 'http://' + window.location.host)
+    </script>
+  </body>
+</html>
