@@ -10,6 +10,6 @@ download the zip file and use it.
 ## to do
 - [x] create a dirty implenment.
 - [ ] translate it to a more elegant version.
-- [ ] add dowload entire directory.
-- [ ] add play mp3/mp4/avi etc.
+- [x] add dowload entire directory.
+- [x] add play mp3/mp4/avi etc.
 - [ ] make a shell command, use it directly in shell.
